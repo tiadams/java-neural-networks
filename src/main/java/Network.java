@@ -8,7 +8,7 @@ public class Network {
 
     private int layerCount;
     private X[] inputVector;
-    private Neuron[] outputLayer;
+    private Neuron[][] layers;
 
     /**
      * Creates an MLP with the specified amount of nodes per layer and with the specified transfer functions on each layer
@@ -17,15 +17,14 @@ public class Network {
      */
     public Network(int[] nodeCounts, TransferFuncType[] functions) {
         layerCount = Math.min(nodeCounts.length, 4);
+        layers = new Neuron[layerCount][];
         inputVector = new X[nodeCounts[0]];
         for(int i = 0; i < inputVector.length; i++)inputVector[i] = new X();
-        Neuron[] inputLayer = createInputLayer(nodeCounts[0]);
-        Neuron[] currPreviousLayer = inputLayer;
+        layers[0] = createInputLayer(nodeCounts[0]); //input layer
         for (int i = 1; i < layerCount - 1; i++){
-            Neuron[] hiddenLayer = createFollowingLayer(LayerType.HIDDEN, nodeCounts[i], functions[i], currPreviousLayer);
-            currPreviousLayer = hiddenLayer;
+            layers[i] = createFollowingLayer(LayerType.HIDDEN, nodeCounts[i], functions[i], layers[i-1]);
         }
-        outputLayer = createFollowingLayer(LayerType.OUTPUT, nodeCounts[layerCount - 1], functions[layerCount - 1], currPreviousLayer);
+        layers[layerCount-1] = createFollowingLayer(LayerType.OUTPUT, nodeCounts[layerCount-1], functions[layerCount-1], layers[layerCount-2]);
     }
 
     public double[] calculateOutputs(double[] inputValues){
@@ -33,9 +32,9 @@ public class Network {
             inputVector[i].setInput(inputValues[i]);
         }
 
-        double[] out = new double[outputLayer.length];
+        double[] out = new double[layers[layerCount-1].length];
         for(int i = 0; i < out.length; i++){
-            out[i] = outputLayer[i].calculateOutput();
+            out[i] = layers[layerCount-1][i].calculateOutput();
         }
         return out;
     }
