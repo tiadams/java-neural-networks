@@ -6,4 +6,14 @@ public class InputNeuron extends Neuron {
         super(TransferFuncType.IDENTITY, inputs);
     }
 
+    @Override
+    void backprop(double learn) {
+        //ignore
+    }
+
+    @Override
+    double getDelta(double learn) {
+        //ignore
+        return 0;
+    }
 }

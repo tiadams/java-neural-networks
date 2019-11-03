@@ -33,13 +33,16 @@ public class Network {
     }
 
     public double[] calculateOutputs(double[] inputValues){
+        return calculateLayerOutputs(inputValues, layerCount-1);
+    }
+    public double[] calculateLayerOutputs(double[] inputValues, int layer){
         for(int i = 0; i < inputVector.length; i++){
             inputVector[i].setInput(inputValues[i]);
         }
 
-        double[] out = new double[layers[layerCount-1].length];
+        double[] out = new double[layers[layer].length];
         for(int i = 0; i < out.length; i++){
-            out[i] = layers[layerCount-1][i].calculateOutput();
+            out[i] = layers[layer][i].calculateOutput();
         }
         return out;
     }
@@ -51,6 +54,20 @@ public class Network {
             squaredError+=Math.pow(teachY[i]-predictY[i], 2);
         }
         return squaredError;
+    }
+
+    private void backprop(double[] trainX, double[] teachY){
+        //for the output layer
+        double[] predictY = calculateOutputs(trainX);
+        for(int n = 0; n < layers[layerCount-1].length; n++){
+            layers[layerCount-1][n].backprop(teachY[n]);
+        }
+        //for the hidden layers
+        for(int l = layerCount-2; l > 0; l--){
+            for(int n = 0; n < layers[l].length; n++){
+
+            }
+        }
     }
 
     /**

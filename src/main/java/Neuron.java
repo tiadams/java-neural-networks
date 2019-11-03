@@ -21,16 +21,12 @@ abstract class Neuron {
                 break;
         }
     }
-    private double getSum(){ //returns net_m
+    double getSum(){ //returns net_m
         return inputs.stream().mapToDouble(input -> (double) input.getWeightedValue()).sum();
     }
     double calculateOutput(){
         return transferFunction.calculate(getSum());
     }
-    void updateSynapseWeights(double teacherY){
-        double w_m = learningRate * (teacherY - calculateOutput()) * transferFunction.differentiate(getSum());// w_hm / out_h
-        for(Input synapse : inputs) {
-             synapse.updateWeight(w_m * synapse.getUnweightedOutput());
-        }
-    }
+    abstract void backprop(double learn);
+    abstract double getDelta(double learn);
 }
