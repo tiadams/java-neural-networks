@@ -7,6 +7,7 @@ public class PatternLoader {
 
     // TODO: adapt to multiple output values, read from header
     public ArrayList<Pattern> loadPatterns(File file){
+        System.out.println("Loading Patterns from file " + file.getAbsolutePath() + "...");
         ArrayList<Pattern> patterns = new ArrayList<Pattern>();
         BufferedReader br = null;
         try {
@@ -27,6 +28,7 @@ public class PatternLoader {
                     patterns.add(pattern);
                 }
         }
+            System.out.println("Successfully parsed " + patterns.size() + " patterns.");
         } catch (IOException e) {
             e.printStackTrace();
         }
