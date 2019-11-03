@@ -39,6 +39,15 @@ public class Network {
         return out;
     }
 
+    private double getError(double[] trainX, double[] teachY){
+        double squaredError = 0.0;
+        double[] predictY = calculateOutputs(trainX);
+        for(int i = 0; i < teachY.length; i++){
+            squaredError+=Math.pow(teachY[i]-predictY[i], 2);
+        }
+        return squaredError;
+    }
+
     /**
      * Creates the input layer.
      * @return Neuron array with InpoutNeuron objects
