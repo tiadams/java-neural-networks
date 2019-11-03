@@ -6,13 +6,13 @@ import java.util.List;
  * nodeCounts and functions must be of length 2-4
  */
 public class Network {
-    enum LayerType{
+    private enum LayerType{
         INPUT, HIDDEN, OUTPUT;
     }
 
-    int layerCount;
-    X[] inputVector;
-    Neuron[] outputLayer;
+    private int layerCount;
+    private X[] inputVector;
+    private Neuron[] outputLayer;
 
     public Network(int[] nodeCounts, TransferFuncType[] functions) {
         layerCount = Math.min(nodeCounts.length, 4);
