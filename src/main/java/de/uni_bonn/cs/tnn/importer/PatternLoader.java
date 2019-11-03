@@ -17,9 +17,15 @@ public class PatternLoader {
             Pattern pattern = new Pattern();
             while ((line = br.readLine()) != null){
                 if(!line.startsWith("#")){
-                    String[] input_output = line.split("\t");
+                    String[] input_output;
+                    if (line.contains("\t")){
+                        input_output = line.split("\t");
+                    }
+                    else{
+                        input_output = line.split("  ");
+                    }
                     String[] input = input_output[0].trim().split(" ");
-                    String[] output = input_output[0].trim().split(" ");
+                    String[] output = input_output[1].trim().split(" ");
                     pattern.setInput(Arrays.stream(input)
                             .mapToDouble(Double::parseDouble)
                             .toArray());
