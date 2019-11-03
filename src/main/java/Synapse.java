@@ -20,6 +20,6 @@ public class Synapse implements Input{
         return input.calculateOutput();
     }
     public void updateWeight(double newWeight){
-        //TODO
+        weight = newWeight;
     }
 }
