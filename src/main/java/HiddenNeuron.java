@@ -1,6 +1,8 @@
+import java.util.List;
+
 public class HiddenNeuron extends Neuron{
 
-    public HiddenNeuron() {
-
+    public HiddenNeuron(TransferFuncType function, List<Input> inputs) {
+        super(function, inputs);
     }
 }

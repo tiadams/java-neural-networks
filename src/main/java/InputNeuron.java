@@ -1,8 +1,9 @@
+import java.util.List;
+
 public class InputNeuron extends Neuron {
 
-    public InputNeuron(Input input) {
-        this.transferFunction = new IdentityTransferFunction();
-        this.inputs.add(input);
+    public InputNeuron(List<Input> inputs) {
+        super(TransferFuncType.IDENTITY, inputs);
     }
 
 }
