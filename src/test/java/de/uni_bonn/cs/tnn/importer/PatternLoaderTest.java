@@ -14,6 +14,6 @@ public class PatternLoaderTest {
         PatternLoader loader = new PatternLoader();
         File file = new File("src/test/resources/training.dat");
         List<Pattern> patterns = loader.loadPatterns(file);
-        assert(patterns.size() == 4);
+        assert(patterns.size() == 32);
     }
 }

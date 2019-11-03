@@ -2,6 +2,7 @@ package de.uni_bonn.cs.tnn.importer;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PatternLoader {
 
@@ -16,15 +17,15 @@ public class PatternLoader {
             Pattern pattern = new Pattern();
             while ((line = br.readLine()) != null){
                 if(!line.startsWith("#")){
-                    double[] output = new double[1];
-                    String[] samples = line.split(" ");
-                    output[0] = Double.parseDouble(samples[samples.length - 1]);
-                    double[] input = new double[samples.length - 2];
-                    for(int i = 0; i < samples.length - 2; i++){
-                        input[i] = Double.parseDouble(samples[i]);
-                    }
-                    pattern.setInput(input);
-                    pattern.setOutput(output);
+                    String[] input_output = line.split("\t");
+                    String[] input = input_output[0].trim().split(" ");
+                    String[] output = input_output[0].trim().split(" ");
+                    pattern.setInput(Arrays.stream(input)
+                            .mapToDouble(Double::parseDouble)
+                            .toArray());
+                    pattern.setOutput(Arrays.stream(output)
+                            .mapToDouble(Double::parseDouble)
+                            .toArray());
                     patterns.add(pattern);
                 }
         }
