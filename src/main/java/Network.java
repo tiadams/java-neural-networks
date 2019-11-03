@@ -11,7 +11,7 @@ public class Network {
     }
 
     int layerCount;
-    X[] inputVector;
+    private X[] inputVector;
     Neuron[] outputLayer;
 
     public Network(int[] nodeCounts, TransferFuncType[] functions) {
