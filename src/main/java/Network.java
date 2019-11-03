@@ -6,13 +6,13 @@ import java.util.List;
  * nodeCounts and functions must be of length 2-4
  */
 public class Network {
-    enum LayerType{
+    private enum LayerType{
         INPUT, HIDDEN, OUTPUT;
     }
 
-    int layerCount;
+    private int layerCount;
     private X[] inputVector;
-    Neuron[] outputLayer;
+    private Neuron[] outputLayer;
 
     public Network(int[] nodeCounts, TransferFuncType[] functions) {
         layerCount = Math.min(nodeCounts.length, 4);
@@ -37,6 +37,15 @@ public class Network {
             out[i] = outputLayer[i].calculateOutput();
         }
         return out;
+    }
+
+    private double getError(double[] trainX, double[] teachY){
+        double squaredError = 0.0;
+        double[] predictY = calculateOutputs(trainX);
+        for(int i = 0; i < teachY.length; i++){
+            squaredError+=Math.pow(teachY[i]-predictY[i], 2);
+        }
+        return squaredError;
     }
 
     /**
