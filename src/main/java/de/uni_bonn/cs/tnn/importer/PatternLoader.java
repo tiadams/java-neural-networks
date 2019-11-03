@@ -15,8 +15,9 @@ public class PatternLoader {
             Pattern pattern = new Pattern();
             while ((line = br.readLine()) != null){
                 if(!line.startsWith("#")){
-                    double[] output = new double[0];
+                    double[] output = new double[1];
                     String[] samples = line.split(" ");
+                    output[0] = Double.parseDouble(samples[samples.length - 1]);
                     double[] input = new double[samples.length - 2];
                     for(int i = 0; i < samples.length - 2; i++){
                         input[i] = Double.parseDouble(samples[i]);
