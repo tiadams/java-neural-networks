@@ -13,7 +13,13 @@ public class Synapse implements Input{
 
     @Override
     public double getWeightedValue() {
-        final double v = input.calculateOutput() * weight;
-        return v;
+        return input.calculateOutput() * weight;
+    }
+
+    public double getUnweightedOutput() {
+        return input.calculateOutput();
+    }
+    public void updateWeight(double newWeight){
+        //TODO
     }
 }

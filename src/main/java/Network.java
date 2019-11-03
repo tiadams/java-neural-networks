@@ -1,10 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Creates an MLP with the specified amount of nodes per layer and with the specified transfer functions on each layer
- * nodeCounts and functions must be of length 2-4
- */
 public class Network {
     private enum LayerType{
         INPUT, HIDDEN, OUTPUT;
@@ -14,6 +10,11 @@ public class Network {
     private X[] inputVector;
     private Neuron[] outputLayer;
 
+    /**
+     * Creates an MLP with the specified amount of nodes per layer and with the specified transfer functions on each layer
+     * nodeCounts must be of length 2-4
+     * functions must be of length 2-4. The first value gets ignored, since the input layer always uses IDENTITY
+     */
     public Network(int[] nodeCounts, TransferFuncType[] functions) {
         layerCount = Math.min(nodeCounts.length, 4);
         inputVector = new X[nodeCounts[0]];
