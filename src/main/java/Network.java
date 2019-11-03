@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class Network {
+
+    private static final Logger LOGGER = Logger.getLogger(Network.class.getName());
+
     private enum LayerType{
         INPUT, HIDDEN, OUTPUT;
     }
@@ -16,6 +20,7 @@ public class Network {
      * functions must be of length 2-4. The first value gets ignored, since the input layer always uses IDENTITY
      */
     public Network(int[] nodeCounts, TransferFuncType[] functions) {
+        LOGGER.info("Initializing " + nodeCounts.length + " layer MLP network");
         layerCount = Math.min(nodeCounts.length, 4);
         layers = new Neuron[layerCount][];
         inputVector = new X[nodeCounts[0]];
