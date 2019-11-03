@@ -9,4 +9,14 @@ public class X implements Input{
     public double getWeightedValue() {
         return value;
     }
+
+    @Override
+    public double getUnweightedOutput() {
+        return value;
+    }
+
+    @Override
+    public void updateWeight(double newWeight) {
+        //ignore
+    }
 }

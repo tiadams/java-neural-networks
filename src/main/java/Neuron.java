@@ -4,9 +4,11 @@ abstract class Neuron {
 
     List<Input> inputs;
     TransferFunction transferFunction;
+    double learningRate;
 
     public Neuron(TransferFuncType function, List<Input> inputs) {
         this.inputs = inputs;
+        learningRate = 0.1;
         switch(function){
             case TANH:
                 this.transferFunction = new TanhTransferFunction();
@@ -19,8 +21,16 @@ abstract class Neuron {
                 break;
         }
     }
+    private double getSum(){ //returns net_m
+        return inputs.stream().mapToDouble(input -> (double) input.getWeightedValue()).sum();
+    }
     double calculateOutput(){
-        double sum = inputs.stream().mapToDouble(input -> (double) input.getWeightedValue()).sum();
-        return transferFunction.calculate(sum);
+        return transferFunction.calculate(getSum());
+    }
+    void updateSynapseWeights(double teacherY){
+        double w_m = learningRate * (teacherY - calculateOutput()) * transferFunction.differentiate(getSum());// w_hm / out_h
+        for(Input synapse : inputs) {
+             synapse.updateWeight(w_m * synapse.getUnweightedOutput());
+        }
     }
 }
