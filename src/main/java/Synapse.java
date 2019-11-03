@@ -7,6 +7,7 @@ public class Synapse implements Input{
 
     public Synapse(Neuron input) {
         this.input = input;
+        input.addOutSynapse(this);
         Random r = new Random();
         this.weight = 4.0*r.nextDouble() - 2.0;
     }
