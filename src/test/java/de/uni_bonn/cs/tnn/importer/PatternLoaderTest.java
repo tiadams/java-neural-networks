@@ -5,7 +5,9 @@ import org.junit.Test;
 import java.io.File;
 import java.util.List;
 
-class PatternLoaderTest {
+import static org.junit.Assert.*;
+
+public class PatternLoaderTest {
 
     @Test
     public void loadPattern(){
@@ -14,5 +16,4 @@ class PatternLoaderTest {
         List<Pattern> patterns = loader.loadPatterns(file);
         assert(patterns.size() == 4);
     }
-
 }
