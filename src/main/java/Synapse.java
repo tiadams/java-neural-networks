@@ -3,6 +3,7 @@ import java.util.Random;
 public class Synapse implements Input{
 
     Neuron input;
+    Neuron output;
     double weight;
 
     public Synapse(Neuron input) {
@@ -22,5 +23,11 @@ public class Synapse implements Input{
     }
     public void updateWeight(double newWeight){
         weight = newWeight;
+    }
+    public double getWeight(){
+        return weight;
+    }
+    public void setOutput(Neuron n){
+        output = n;
     }
 }

@@ -8,9 +8,9 @@ abstract class Neuron {
     TransferFunction transferFunction;
     double learningRate;
 
-    public Neuron(TransferFuncType function, List<Input> inputs) {
-        this.inputs = inputs;
+    public Neuron(TransferFuncType function) {
         outSynapses = new ArrayList<>();
+        inputs = new ArrayList<>();
         learningRate = 0.1;
         switch(function){
             case TANH:
@@ -33,6 +33,9 @@ abstract class Neuron {
     abstract void backprop(double learn);
     abstract double getDelta(double learn);
 
+    public void addInput(Input i) {
+        this.inputs.add(i);
+    }
     public void addOutSynapse(Synapse s) {
         this.outSynapses.add(s);
     }
