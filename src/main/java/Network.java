@@ -77,9 +77,12 @@ public class Network {
     private Neuron[] createInputLayer(int nodeCount){
         Neuron[] newrons = new Neuron[nodeCount];
         for(int i = 0; i < nodeCount; i++){
+            Neuron newron = new InputNeuron();
+
             List<Input> inputs = new ArrayList<>();
             inputs.add(inputVector[i]);
-            newrons[i] = new InputNeuron(inputs);
+            for(Input in : inputs) newron.addInput(in);
+            newrons[i] = newron;
         }
         return newrons;
     }
@@ -92,11 +95,17 @@ public class Network {
     private Neuron[] createFollowingLayer(LayerType type, int nodeCount, TransferFuncType function, Neuron[] previousLayer){
         Neuron[] newrons = new Neuron[nodeCount];
         for(int i = 0; i < nodeCount; i++){
-            List<Input> inputs = new ArrayList<>();
-            for (Neuron neuron : previousLayer) {
-                inputs.add(new Synapse(neuron));
+            Neuron newron = type == LayerType.HIDDEN ? new HiddenNeuron(function) : new OutputNeuron(function);
+
+            List<Synapse> inSynapses = new ArrayList<>();
+            for (Neuron precedingNeuron : previousLayer) {
+                inSynapses.add(new Synapse(precedingNeuron));
             }
-            newrons[i] = type == LayerType.HIDDEN ? new HiddenNeuron(function, inputs) : new OutputNeuron(function, inputs);
+            for(Synapse syn : inSynapses){
+                syn.setOutput(newron);
+                newron.addInput(syn);
+            }
+            newrons[i] = newron;
         }
         return newrons;
     }
