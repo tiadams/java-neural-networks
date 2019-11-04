@@ -18,6 +18,8 @@ public class Network {
     private X[] inputVector;
     private Neuron[][] layers;
 
+    public double[] errorValues;
+
     /**
      * Creates an MLP with the specified amount of nodes per layer and with the specified transfer functions on each layer
      * nodeCounts must be of length 2-4
@@ -70,12 +72,19 @@ public class Network {
     }
 
     public void train(List<Pattern> trainingPatterns){
-        trainingPatterns.forEach(pattern -> {
+        // for Error tracing
+        int i = 0;
+        this.errorValues = new double[trainingPatterns.size()];
+        // train
+        for(Pattern pattern : trainingPatterns){
             double[] trainX = pattern.getInput();
             double[] teachY = pattern.getOutput();
             this.backprop(trainX, teachY);
+            // add to E(x)
+            this.errorValues[i] = getError(trainX, teachY);
+            i++;
             LOGGER.info("Err: "+getError(trainX, teachY));
-        });
+        }
     }
 
     /**
