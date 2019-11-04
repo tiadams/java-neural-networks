@@ -56,16 +56,11 @@ public class Network {
         return squaredError;
     }
 
-    private void backprop(double[] trainX, double[] teachY){
-        //for the output layer
-        double[] predictY = calculateOutputs(trainX);
-        for(int n = 0; n < layers[layerCount-1].length; n++){
-            layers[layerCount-1][n].backprop(teachY[n]);
-        }
-        //for the hidden layers
-        for(int l = layerCount-2; l > 0; l--){
+    public void backprop(double[] trainX, double[] teachY){
+        for(int l = layerCount-1; l > 0; l--){
             for(int n = 0; n < layers[l].length; n++){
-
+                if(l == layerCount-1)layers[l][n].backprop(teachY[n]);
+                else layers[l][n].backprop(1.0); //teacherY doesn't matter for non-output-layers. This prevents ArrayIndexOutOfBoundsExceptions
             }
         }
     }
@@ -102,7 +97,7 @@ public class Network {
                 inSynapses.add(new Synapse(precedingNeuron));
             }
             for(Synapse syn : inSynapses){
-                syn.setOutput(newron);
+                syn.setOutputNeuron(newron);
                 newron.addInput(syn);
             }
             newrons[i] = newron;

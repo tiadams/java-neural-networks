@@ -7,16 +7,20 @@ public class HiddenNeuron extends Neuron{
     }
 
     @Override
-    void backprop(double learn) {
-        double sum = 0.0;
-        double w_m = learningRate * (sum) * transferFunction.differentiate(getSum());// w_hm / out_h
+    void backprop(double teacherY) {
+        double delta_h =  calcDelta();
         for(Input synapse : inputs) {
-            synapse.updateWeight(w_m * synapse.getUnweightedOutput());
+            synapse.updateWeight(learningRate * delta_h * synapse.getUnweightedOutput());
         }
     }
 
-    @Override
-    double getDelta(double learn) {
-        return 0;//TODO
+    private double calcDelta() {
+        double sum = 0.0;
+        for(Synapse s : outSynapses) {
+            sum += s.getWeight()*s.getOutputNeuronDelta();
+        }
+        double delta = sum * transferFunction.differentiate(getSum());
+        lastDelta = delta;
+        return delta;
     }
 }

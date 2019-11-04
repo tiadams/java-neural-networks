@@ -7,6 +7,7 @@ abstract class Neuron {
     List<Synapse> outSynapses;
     TransferFunction transferFunction;
     double learningRate;
+    double lastDelta;
 
     public Neuron(TransferFuncType function) {
         outSynapses = new ArrayList<>();
@@ -30,8 +31,10 @@ abstract class Neuron {
     double calculateOutput(){
         return transferFunction.calculate(getSum());
     }
-    abstract void backprop(double learn);
-    abstract double getDelta(double learn);
+    abstract void backprop(double teacherY);
+    public double getLastDelta(){
+        return lastDelta;
+    }
 
     public void addInput(Input i) {
         this.inputs.add(i);

@@ -7,17 +7,15 @@ public class OutputNeuron extends Neuron{
     }
 
     @Override
-    void backprop(double learn) {
-        double teacherY = learn;
-        double delta_m =  getDelta(teacherY);
+    void backprop(double teacherY) {
+        double delta_m =  calcDelta(teacherY);
         for(Input synapse : inputs) {
             synapse.updateWeight(learningRate * delta_m * synapse.getUnweightedOutput());
         }
     }
-
-    @Override
-    double getDelta(double learn) {
-        double teacherY = learn;
-        return (teacherY - calculateOutput()) * transferFunction.differentiate(getSum());
+    private double calcDelta(double teacherY){
+        double delta = (teacherY - calculateOutput()) * transferFunction.differentiate(getSum());
+        lastDelta = delta;
+        return delta;
     }
 }

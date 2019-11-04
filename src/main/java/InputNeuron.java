@@ -7,12 +7,11 @@ public class InputNeuron extends Neuron {
     }
 
     @Override
-    void backprop(double learn) {
+    void backprop(double teacherY) {
         //ignore
     }
 
-    @Override
-    double getDelta(double learn) {
+    double calcDelta(double teacherY) {
         //ignore
         return 0;
     }

@@ -21,13 +21,16 @@ public class Synapse implements Input{
     public double getUnweightedOutput() {
         return input.calculateOutput();
     }
-    public void updateWeight(double newWeight){
-        weight = newWeight;
+    public void updateWeight(double weightDelta){
+        weight += weightDelta;
     }
     public double getWeight(){
         return weight;
     }
-    public void setOutput(Neuron n){
+    public void setOutputNeuron(Neuron n){
         output = n;
+    }
+    public double getOutputNeuronDelta(){
+        return output.getLastDelta();
     }
 }
