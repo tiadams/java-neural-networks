@@ -1,10 +1,10 @@
-import de.uni_bonn.cs.tnn.importer.Pattern;
-import de.uni_bonn.cs.tnn.importer.PatternLoader;
+import de.uni_bonn.cs.tnn.mlp.core.Network;
+import de.uni_bonn.cs.tnn.mlp.core.TransferFuncType;
+import de.uni_bonn.cs.tnn.mlp.io.Pattern;
+import de.uni_bonn.cs.tnn.mlp.io.PatternLoader;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public class Runner {
     public static void main(String[] args){
@@ -13,6 +13,7 @@ public class Runner {
         Network testMLP = new Network(shape, functions);
         PatternLoader loader = new PatternLoader();
         List<Pattern> patterns = loader.loadPatterns(new File("src/main/resources/training2.dat"));
-        testMLP.train(patterns);
+        List<Pattern> patterns_clean = patterns.subList(0,150);
+        testMLP.train(patterns_clean);
     }
 }

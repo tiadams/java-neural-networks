@@ -1,3 +1,5 @@
+package de.uni_bonn.cs.tnn.mlp.core;
+
 import java.util.Random;
 
 public class Synapse implements Input{

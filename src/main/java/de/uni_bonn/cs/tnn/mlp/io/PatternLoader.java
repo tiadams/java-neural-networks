@@ -1,4 +1,4 @@
-package de.uni_bonn.cs.tnn.importer;
+package de.uni_bonn.cs.tnn.mlp.io;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,4 +1,6 @@
-import de.uni_bonn.cs.tnn.importer.Pattern;
+package de.uni_bonn.cs.tnn.mlp.core;
+
+import de.uni_bonn.cs.tnn.mlp.io.Pattern;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +80,7 @@ public class Network {
 
     /**
      * Creates the input layer.
-     * @return Neuron array with InpoutNeuron objects
+     * @return de.uni_bonn.cs.tnn.mlp.core.Neuron array with InpoutNeuron objects
      */
     private Neuron[] createInputLayer(int nodeCount){
         Neuron[] newrons = new Neuron[nodeCount];
@@ -96,7 +98,7 @@ public class Network {
     /**
      * Creates a hidden or output layer and all Synapses coming in from the previous layer.
      * @param type Either HIDDEN or OUTPUT
-     * @return Neuron array with either HiddenNeuron or OutputNeuron objects
+     * @return de.uni_bonn.cs.tnn.mlp.core.Neuron array with either de.uni_bonn.cs.tnn.mlp.core.HiddenNeuron or de.uni_bonn.cs.tnn.mlp.core.OutputNeuron objects
      */
     private Neuron[] createFollowingLayer(LayerType type, int nodeCount, TransferFuncType function, Neuron[] previousLayer){
         Neuron[] newrons = new Neuron[nodeCount];

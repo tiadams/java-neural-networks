@@ -1,4 +1,4 @@
-import java.util.List;
+package de.uni_bonn.cs.tnn.mlp.core;
 
 public class InputNeuron extends Neuron {
 

@@ -1,3 +1,5 @@
+package de.uni_bonn.cs.tnn.mlp.core;
+
 public class IdentityTransferFunction implements TransferFunction {
 
     @Override

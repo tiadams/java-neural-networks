@@ -1,3 +1,5 @@
+package de.uni_bonn.cs.tnn.mlp.core;
+
 public interface TransferFunction {
 
     public double calculate(double input);
