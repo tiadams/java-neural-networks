@@ -1,3 +1,5 @@
+import de.uni_bonn.cs.tnn.importer.Pattern;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -63,6 +65,14 @@ public class Network {
                 else layers[l][n].backprop(1.0); //teacherY doesn't matter for non-output-layers. This prevents ArrayIndexOutOfBoundsExceptions
             }
         }
+    }
+
+    public void train(List<Pattern> trainingPatterns){
+        trainingPatterns.forEach(pattern -> {
+            double[] trainX = pattern.getInput();
+            double[] teachY = pattern.getOutput();
+            this.backprop(trainX, teachY);
+        });
     }
 
     /**
