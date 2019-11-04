@@ -72,6 +72,7 @@ public class Network {
             double[] trainX = pattern.getInput();
             double[] teachY = pattern.getOutput();
             this.backprop(trainX, teachY);
+            LOGGER.info("Err: "+getError(trainX, teachY));
         });
     }
 

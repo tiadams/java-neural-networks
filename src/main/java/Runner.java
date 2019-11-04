@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Runner {
     public static void main(String[] args){
-        int[] shape = {2, 3, 3, 2};
+        int[] shape = {2, 2, 2, 1};
         TransferFuncType[] functions = {TransferFuncType.IDENTITY, TransferFuncType.TANH, TransferFuncType.TANH, TransferFuncType.TANH};
         Network testMLP = new Network(shape, functions);
         PatternLoader loader = new PatternLoader();
