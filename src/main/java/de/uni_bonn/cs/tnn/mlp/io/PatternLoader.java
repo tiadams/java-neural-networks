@@ -3,6 +3,8 @@ package de.uni_bonn.cs.tnn.mlp.io;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class PatternLoader {
 
@@ -39,6 +41,18 @@ public class PatternLoader {
             e.printStackTrace();
         }
         return patterns;
+    }
+
+    // TODO: This does belong in its own class, possibly extending List<Pattern>
+    public List<Pattern> getShuffledPatternList(List<Pattern> patterns){
+        ArrayList<Pattern> shuffled = new ArrayList<Pattern>();
+        Random rnd = new Random();
+        while(patterns.size() != 0){
+            int pick = rnd.nextInt(patterns.size());
+            shuffled.add(patterns.get(pick));
+            patterns.remove(pick);
+        }
+        return shuffled;
     }
 
 }

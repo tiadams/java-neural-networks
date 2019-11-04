@@ -19,11 +19,16 @@ public class Runner {
         TransferFuncType[] functions = {TransferFuncType.IDENTITY, TransferFuncType.TANH, TransferFuncType.TANH, TransferFuncType.TANH};
         Network testMLP = new Network(shape, functions);
 
-        // load Patterns and train
+        // load Patterns
         PatternLoader loader = new PatternLoader();
         List<Pattern> patterns = loader.loadPatterns(new File("src/main/resources/training2.dat"));
+
+        // shuffle
         List<Pattern> patterns_clean = patterns.subList(0,150);
-        testMLP.train(patterns_clean);
+        List<Pattern> shuffled = loader.getShuffledPatternList(patterns_clean);
+
+        // train
+        testMLP.train(shuffled);
 
         // visualize
         ErrorPlotter plotter = new ErrorPlotter(testMLP.errorValues);
