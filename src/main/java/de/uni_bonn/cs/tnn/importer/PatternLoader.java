@@ -14,9 +14,9 @@ public class PatternLoader {
         try {
             br = new BufferedReader(new FileReader(file));
             String line;
-            Pattern pattern = new Pattern();
             while ((line = br.readLine()) != null){
                 if(!line.startsWith("#")){
+                    Pattern pattern = new Pattern();
                     String[] input_output;
                     if (line.contains("\t")){
                         input_output = line.split("\t");
