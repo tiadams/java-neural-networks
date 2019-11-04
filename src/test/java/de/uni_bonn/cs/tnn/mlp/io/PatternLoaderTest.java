@@ -1,11 +1,9 @@
-package de.uni_bonn.cs.tnn.importer;
+package de.uni_bonn.cs.tnn.mlp.io;
 
 import org.junit.Test;
 
 import java.io.File;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class PatternLoaderTest {
 
