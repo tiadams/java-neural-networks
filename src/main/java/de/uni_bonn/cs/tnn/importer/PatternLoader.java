@@ -17,11 +17,11 @@ public class PatternLoader {
             Pattern pattern = new Pattern();
             while ((line = br.readLine()) != null){
                 if(!line.startsWith("#")){
+                    System.out.println(line);
                     String[] input_output;
                     if (line.contains("\t")){
                         input_output = line.split("\t");
-                    }
-                    else{
+                    } else{
                         input_output = line.split("  ");
                     }
                     String[] input = input_output[0].trim().split(" ");
