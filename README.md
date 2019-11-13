@@ -1,5 +1,6 @@
-# Multilayer Perceptron
-## Build
+# Technical Neural Networks
+## Multilayer Perceptron
+### Build
 This project is build with [maven](http://maven.apache.org)
 
 build with `mvn clean compile assembly:single`
