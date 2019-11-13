@@ -3,6 +3,7 @@ import de.uni_bonn.cs.tnn.core.TransferFuncType;
 import de.uni_bonn.cs.tnn.gui.ErrorPlotter;
 import de.uni_bonn.cs.tnn.io.Pattern;
 import de.uni_bonn.cs.tnn.io.PatternLoader;
+import de.uni_bonn.cs.tnn.mlp.RBFNetwork;
 
 import java.io.File;
 import java.util.List;
@@ -36,5 +37,6 @@ public class Runner {
         ErrorPlotter plotter = new ErrorPlotter(testMLP.errorValues);
         plotter.showErrorPlot();
 
+        RBFNetwork testRBF = new RBFNetwork(shape);
     }
 }

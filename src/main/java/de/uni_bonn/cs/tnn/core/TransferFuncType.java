@@ -1,5 +1,5 @@
 package de.uni_bonn.cs.tnn.core;
 
 public enum TransferFuncType {
-    TANH, LOGISTIC, IDENTITY;
+    TANH, LOGISTIC, IDENTITY, GAUSSIAN;
 }

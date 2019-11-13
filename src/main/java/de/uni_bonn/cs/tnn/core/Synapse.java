@@ -12,7 +12,7 @@ public class Synapse implements Input{
         this.input = input;
         input.addOutSynapse(this);
         Random r = new Random();
-        this.weight = 4.0*r.nextDouble() - 2.0;
+        this.weight = 1.0*r.nextDouble() - 0.5; //TODO add way to adjust random range programmatically
     }
 
     @Override

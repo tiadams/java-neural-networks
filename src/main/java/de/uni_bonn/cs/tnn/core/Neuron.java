@@ -25,6 +25,9 @@ public abstract class Neuron {
             case IDENTITY:
                 this.transferFunction = new IdentityTransferFunction();
                 break;
+            case GAUSSIAN:
+                this.transferFunction = new GaussianTransferFunction();
+                break;
         }
     }
     public double getSum(){ //returns net_m
