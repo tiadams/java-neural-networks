@@ -1,4 +1,4 @@
-package de.uni_bonn.cs.tnn.mlp.io;
+package de.uni_bonn.cs.tnn.io;
 
 import org.junit.Test;
 

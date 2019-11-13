@@ -1,4 +1,4 @@
-package de.uni_bonn.cs.tnn.mlp.core;
+package de.uni_bonn.cs.tnn.core;
 
 import java.util.Random;
 

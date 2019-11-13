@@ -1,4 +1,4 @@
-package de.uni_bonn.cs.tnn.mlp.core;
+package de.uni_bonn.cs.tnn.core;
 
 public class OutputNeuron extends Neuron{
 
@@ -7,7 +7,7 @@ public class OutputNeuron extends Neuron{
     }
 
     @Override
-    void backprop(double teacherY) {
+    public void backprop(double teacherY) {
         double delta_m =  calcDelta(teacherY);
         for(Input synapse : inputs) {
             synapse.updateWeight(learningRate * delta_m * synapse.getUnweightedOutput());

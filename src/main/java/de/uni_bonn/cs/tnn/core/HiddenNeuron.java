@@ -1,4 +1,4 @@
-package de.uni_bonn.cs.tnn.mlp.core;
+package de.uni_bonn.cs.tnn.core;
 
 public class HiddenNeuron extends Neuron{
 
@@ -7,7 +7,7 @@ public class HiddenNeuron extends Neuron{
     }
 
     @Override
-    void backprop(double teacherY) {
+    public void backprop(double teacherY) {
         double delta_h =  calcDelta();
         for(Input synapse : inputs) {
             synapse.updateWeight(learningRate * delta_h * synapse.getUnweightedOutput());

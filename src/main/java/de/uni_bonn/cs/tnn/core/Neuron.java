@@ -1,9 +1,9 @@
-package de.uni_bonn.cs.tnn.mlp.core;
+package de.uni_bonn.cs.tnn.core;
 
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Neuron {
+public abstract class Neuron {
 
     List<Input> inputs;
     List<Synapse> outSynapses;
@@ -14,7 +14,7 @@ abstract class Neuron {
     public Neuron(TransferFuncType function) {
         outSynapses = new ArrayList<>();
         inputs = new ArrayList<>();
-        learningRate = 0.1;
+        learningRate = 0.05;
         switch(function){
             case TANH:
                 this.transferFunction = new TanhTransferFunction();
@@ -27,13 +27,13 @@ abstract class Neuron {
                 break;
         }
     }
-    double getSum(){ //returns net_m
+    public double getSum(){ //returns net_m
         return inputs.stream().mapToDouble(input -> (double) input.getWeightedValue()).sum();
     }
-    double calculateOutput(){
+    public double calculateOutput(){
         return transferFunction.calculate(getSum());
     }
-    abstract void backprop(double teacherY);
+    public abstract void backprop(double teacherY);
     public double getLastDelta(){
         return lastDelta;
     }

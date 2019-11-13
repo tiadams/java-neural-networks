@@ -1,6 +1,6 @@
 import org.junit.Test;
 
-public class NetworkTest {
+public class MLPNetworkTest {
 
     @Test
     public void testTrainingSuccessful(){

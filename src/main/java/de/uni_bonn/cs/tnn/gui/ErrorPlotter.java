@@ -1,4 +1,4 @@
-package de.uni_bonn.cs.tnn.mlp.gui;
+package de.uni_bonn.cs.tnn.gui;
 
 import org.knowm.xchart.QuickChart;
 import org.knowm.xchart.SwingWrapper;

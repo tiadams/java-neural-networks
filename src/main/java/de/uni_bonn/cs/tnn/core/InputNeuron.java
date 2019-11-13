@@ -1,4 +1,4 @@
-package de.uni_bonn.cs.tnn.mlp.core;
+package de.uni_bonn.cs.tnn.core;
 
 public class InputNeuron extends Neuron {
 
@@ -7,7 +7,7 @@ public class InputNeuron extends Neuron {
     }
 
     @Override
-    void backprop(double teacherY) {
+    public void backprop(double teacherY) {
         //ignore
     }
 
