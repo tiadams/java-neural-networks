@@ -42,7 +42,7 @@ public class MLPNetwork {
     public double[] calculateOutputs(double[] inputValues){
         return calculateLayerOutputs(inputValues, layerCount-1);
     }
-    public double[] calculateLayerOutputs(double[] inputValues, int layer){
+    private double[] calculateLayerOutputs(double[] inputValues, int layer){
         for(int i = 0; i < inputVector.length; i++){
             inputVector[i].setInput(inputValues[i]);
         }
