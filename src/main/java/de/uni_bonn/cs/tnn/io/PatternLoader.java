@@ -37,9 +37,6 @@ public class PatternLoader {
                     }
                     Pattern pattern = new Pattern();
                     String[] split = Arrays.asList(line.split(" ")).stream().filter(x -> !x.isEmpty()).toArray(String[]::new);
-                    if(split.length != (n + m)){
-                        System.out.println(line);
-                    }
                     assert (split.length == (n + m));
                     List<Double> input = new ArrayList<>();
                     List<Double> output = new ArrayList<>();
@@ -50,6 +47,7 @@ public class PatternLoader {
                             output.add(Double.parseDouble(split[i]));
                         }
                     }
+                    assert (input.size() == n && output.size() == m);
                     pattern.setInput(input.stream().mapToDouble(Double::doubleValue).toArray());
                     pattern.setOutput(output.stream().mapToDouble(Double::doubleValue).toArray());
                     patterns.add(pattern);
