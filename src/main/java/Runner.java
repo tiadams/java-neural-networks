@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 public class Runner {
 
     public static void main(String[] args){
+//        runMLP();
         runRBF();
     }
     public static void runMLP(){

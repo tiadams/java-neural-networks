@@ -1,18 +1,15 @@
 package de.uni_bonn.cs.tnn.core;
 
-import java.util.Random;
-
 public class Synapse implements Input{
 
     Neuron input;
     Neuron output;
     double weight;
 
-    public Synapse(Neuron input) {
+    public Synapse(Neuron input, double weight) {
         this.input = input;
         input.addOutSynapse(this);
-        Random r = new Random();
-        this.weight = 1.0; //TODO add way to adjust random range programmatically
+        this.weight = weight;
     }
 
     @Override

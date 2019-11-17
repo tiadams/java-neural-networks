@@ -5,6 +5,7 @@ import de.uni_bonn.cs.tnn.io.Pattern;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 
 public class MLPNetwork {
@@ -117,7 +118,8 @@ public class MLPNetwork {
 
             List<Synapse> inSynapses = new ArrayList<>();
             for (Neuron precedingNeuron : previousLayer) {
-                inSynapses.add(new Synapse(precedingNeuron));
+                Random r = new Random();
+                inSynapses.add(new Synapse(precedingNeuron, 4.0*r.nextDouble() - 2.0));
             }
             for(Synapse syn : inSynapses){
                 syn.setOutputNeuron(newron);

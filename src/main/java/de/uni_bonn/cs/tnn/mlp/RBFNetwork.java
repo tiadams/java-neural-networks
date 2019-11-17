@@ -80,7 +80,7 @@ public class RBFNetwork {
                 RBFNeuron rbfNewron = new RBFNeuron();
                 List<Synapse> inSynapses = new ArrayList<>();
                 for (Neuron precedingNeuron : previousLayer) {
-                    inSynapses.add(new Synapse(precedingNeuron));
+                    inSynapses.add(new Synapse(precedingNeuron, 1.0));
                 }
                 for(Synapse syn : inSynapses){
                     syn.setOutputNeuron(rbfNewron);
@@ -93,7 +93,7 @@ public class RBFNetwork {
                 newron = new OutputNeuron(TransferFuncType.IDENTITY);
                 List<Synapse> inSynapses = new ArrayList<>();
                 for (Neuron precedingNeuron : previousLayer) {
-                    inSynapses.add(new Synapse(precedingNeuron));
+                    inSynapses.add(new Synapse(precedingNeuron, 1.0));
                 }
                 for(Synapse syn : inSynapses){
                     syn.setOutputNeuron(newron);
