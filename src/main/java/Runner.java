@@ -13,9 +13,24 @@ import java.util.logging.Logger;
 public class Runner {
 
     public static void main(String[] args){
-//        runMLP();
-        runRBF();
+
+        final String ERROR_MSG = "First argument should be either MLP or RBF!";
+
+        if (args.length != 1){
+            System.out.println(ERROR_MSG);
+        }
+        else{
+            switch(args[0]) {
+                case "MLP":
+                    System.out.println("Running MLP demo");
+                    runMLP();
+                case "RBF":
+                    System.out.println("Running RBF demo");
+                    runRBF();
+            }
+        }
     }
+
     public static void runMLP(){
         // define shape
         int[] shape = {2, 10, 10, 1};
