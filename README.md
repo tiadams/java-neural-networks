@@ -27,7 +27,7 @@ testMLP.train(shuffled);
 // visualize
 ErrorPlotter plotter = new ErrorPlotter(testMLP.errorValues);
 plotter.showErrorPlot();
-        ```
+```
 
 ## Radial Basis Function Network
 
