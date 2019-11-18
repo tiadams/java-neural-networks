@@ -5,9 +5,9 @@ import java.util.List;
 
 public abstract class Neuron {
 
-    List<Input> inputs;
+    protected List<Input> inputs;
     List<Synapse> outSynapses;
-    TransferFunction transferFunction;
+    protected TransferFunction transferFunction;
     double learningRate;
     double lastDelta;
 
