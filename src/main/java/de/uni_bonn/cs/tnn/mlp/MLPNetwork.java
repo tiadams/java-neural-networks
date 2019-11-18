@@ -118,7 +118,7 @@ public class MLPNetwork {
             List<Synapse> inSynapses = new ArrayList<>();
             for (Neuron precedingNeuron : previousLayer) {
                 Random r = new Random();
-                inSynapses.add(new Synapse(precedingNeuron, 1.0));
+                inSynapses.add(new Synapse(precedingNeuron, 4.0*r.nextDouble() - 2.0));
             }
             for(Synapse syn : inSynapses){
                 syn.setOutputNeuron(newron);

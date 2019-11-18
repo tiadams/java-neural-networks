@@ -16,7 +16,7 @@ public abstract class Neuron {
         inputs = new ArrayList<>();
         // add bias to input
         inputs.add(new Bias());
-        learningRate = 1;
+        learningRate = 0.1;
         switch(function){
             case TANH:
                 this.transferFunction = new TanhTransferFunction();

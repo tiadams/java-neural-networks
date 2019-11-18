@@ -38,29 +38,26 @@ public class Runner {
 
     public static void runMLP() {
         // define shape
-        int[] shape = {8, 3, 8};
-        TransferFuncType[] functions = {TransferFuncType.IDENTITY, TransferFuncType.TANH, TransferFuncType.TANH, TransferFuncType.TANH};
+        int[] shape = {3, 3,3, 3};
+        TransferFuncType[] functions = {TransferFuncType.IDENTITY, TransferFuncType.TANH, TransferFuncType.TANH, TransferFuncType.IDENTITY};
         MLPNetwork testMLP = new MLPNetwork(shape, functions);
 
         // load Patterns
         PatternLoader loader = new PatternLoader();
-        List<Pattern> patterns = loader.loadPatterns(new File("src/main/resources/8-3-8.dat"));
+        List<Pattern> patterns = loader.loadPatterns(new File("src/main/resources/invert.dat"));
         patterns.addAll(patterns);
         patterns.addAll(patterns);
         patterns.addAll(patterns);
         patterns.addAll(patterns);
         patterns.addAll(patterns);
         patterns.addAll(patterns);
-        patterns.addAll(patterns);
-        patterns.addAll(patterns);
+
 
         // shuffle
         List<Pattern> shuffled = loader.getShuffledPatternList(patterns);
 
-
         // train
         testMLP.train(shuffled);
-        double[] out = testMLP.calculateOutputs(new double[] {0,1,0,0,0,0,0,0});
 
         // visualize
         ErrorPlotter plotter = new ErrorPlotter(testMLP.errorValues);
