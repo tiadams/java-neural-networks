@@ -14,7 +14,9 @@ public abstract class Neuron {
     public Neuron(TransferFuncType function) {
         outSynapses = new ArrayList<>();
         inputs = new ArrayList<>();
-        learningRate = 0.05;
+        // add bias to input
+        inputs.add(new Bias());
+        learningRate = 1;
         switch(function){
             case TANH:
                 this.transferFunction = new TanhTransferFunction();

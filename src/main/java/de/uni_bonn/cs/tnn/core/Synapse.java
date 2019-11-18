@@ -20,8 +20,8 @@ public class Synapse implements Input{
     public double getUnweightedOutput() {
         return input.calculateOutput();
     }
-    public void updateWeight(double weightDelta){
-        weight += weightDelta;
+    public void updateWeight(double weightChange){
+        weight += weightChange;
     }
     public double getWeight(){
         return weight;
