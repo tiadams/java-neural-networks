@@ -1,4 +1,4 @@
-package de.uni_bonn.cs.tnn.mlp;
+package de.uni_bonn.cs.tnn.rbf;
 
 import de.uni_bonn.cs.tnn.core.*;
 

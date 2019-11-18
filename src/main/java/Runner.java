@@ -3,12 +3,11 @@ import de.uni_bonn.cs.tnn.core.TransferFuncType;
 import de.uni_bonn.cs.tnn.gui.ErrorPlotter;
 import de.uni_bonn.cs.tnn.io.Pattern;
 import de.uni_bonn.cs.tnn.io.PatternLoader;
-import de.uni_bonn.cs.tnn.mlp.RBFNetwork;
+import de.uni_bonn.cs.tnn.rbf.RBFNetwork;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class Runner {
 
