@@ -55,7 +55,7 @@ public class MLPNetwork {
         return out;
     }
 
-    private double getError(double[] trainX, double[] teachY){
+    public double getError(double[] trainX, double[] teachY){
         double squaredError = 0.0;
         double[] predictY = calculateOutputs(trainX);
         for(int i = 0; i < teachY.length; i++){
@@ -68,7 +68,7 @@ public class MLPNetwork {
         for(int l = layerCount-1; l > 0; l--){
             for(int n = 0; n < layers[l].length; n++){
                 if(l == layerCount-1)layers[l][n].backprop(teachY[n]);
-                else layers[l][n].backprop(1.0); //teacherY doesn't matter for non-output-layers. This prevents ArrayIndexOutOfBoundsExceptions
+                else layers[l][n].backprop(Double.NaN); //teacherY doesn't matter for non-output-layers. This prevents ArrayIndexOutOfBoundsExceptions
             }
         }
     }
@@ -85,7 +85,6 @@ public class MLPNetwork {
             // add to E(x)
             this.errorValues[i] = getError(trainX, teachY);
             i++;
-            LOGGER.info("Err: "+getError(trainX, teachY));
         }
     }
 

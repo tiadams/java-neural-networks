@@ -4,9 +4,13 @@ import de.uni_bonn.cs.tnn.gui.ErrorPlotter;
 import de.uni_bonn.cs.tnn.io.Pattern;
 import de.uni_bonn.cs.tnn.io.PatternLoader;
 import de.uni_bonn.cs.tnn.rbf.RBFNetwork;
+import de.uni_bonn.cs.tnn.util.PatternGenerator;
+import de.uni_bonn.cs.tnn.util.QuadraticFunction;
+import de.uni_bonn.cs.tnn.util.SinusFunction;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Runner {
@@ -32,22 +36,16 @@ public class Runner {
 
     public static void runMLP(){
         // define shape
-        int[] shape = {2, 10, 10, 1};
-        TransferFuncType[] functions = {TransferFuncType.IDENTITY, TransferFuncType.TANH, TransferFuncType.TANH, TransferFuncType.TANH};
+        int[] shape = {1, 10, 10, 1};
+        TransferFuncType[] functions = {TransferFuncType.IDENTITY, TransferFuncType.TANH, TransferFuncType.TANH, TransferFuncType.IDENTITY};
         MLPNetwork testMLP = new MLPNetwork(shape, functions);
 
         // load Patterns
         PatternLoader loader = new PatternLoader();
-        List<Pattern> patterns = loader.loadPatterns(new File("src/main/resources/training2.dat"));
 
         // shuffle
-        List<Pattern> patterns_clean = patterns.subList(0,150);
-        patterns_clean.addAll(patterns_clean);
-        patterns_clean.addAll(patterns_clean);
-        patterns_clean.addAll(patterns_clean);
-        patterns_clean.addAll(patterns_clean);
-        patterns_clean.addAll(patterns_clean);
-        List<Pattern> shuffled = loader.getShuffledPatternList(patterns_clean);
+        List<Pattern> patterns = PatternGenerator.sample(new QuadraticFunction(),10000, -100, 100);
+        List<Pattern> shuffled = loader.getShuffledPatternList(patterns);
 
         // train
         testMLP.train(shuffled);
