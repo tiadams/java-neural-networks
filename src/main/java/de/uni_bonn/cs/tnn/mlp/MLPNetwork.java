@@ -65,10 +65,15 @@ public class MLPNetwork {
     }
 
     public void backprop(double[] trainX, double[] teachY){
-        for(int l = layerCount-1; l > 0; l--){
+        for(int l = layerCount-1; l > 0; l--){ //Here we calculate all deltas and the changes for all weights before all layers
             for(int n = 0; n < layers[l].length; n++){
                 if(l == layerCount-1)layers[l][n].backprop(teachY[n]);
                 else layers[l][n].backprop(Double.NaN); //teacherY doesn't matter for non-output-layers. This prevents ArrayIndexOutOfBoundsExceptions
+            }
+        }
+        for(int l = layerCount-1; l > 0; l--) { //Now we update all synapse weights with the calculated values
+            for(int n = 0; n < layers[l].length; n++){
+                layers[l][n].applySynapseWeightUpdates();
             }
         }
     }

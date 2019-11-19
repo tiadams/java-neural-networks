@@ -10,16 +10,19 @@ public class HiddenNeuron extends Neuron{
     public void backprop(double teacherY) {
         double delta_h =  calcDelta();
         for(Input synapse : inputs) {
-            synapse.updateWeight(learningRate * delta_h * synapse.getUnweightedOutput());
+            double w_gh = learningRate * delta_h * synapse.getUnweightedOutput();
+            synapseWeightUpdates.put(synapse, w_gh);
         }
     }
 
     private double calcDelta() {
-        double sum = 0.0;
-        for(Synapse s : outSynapses) {
-            sum += s.getWeight()*s.getOutputNeuronDelta();
+        double deltaKWeightedSum = 0.0;
+        for(Synapse hk : outSynapses) {
+            double delta_k = hk.getOutputNeuronDelta();
+            double w_hk = hk.getWeight();
+            deltaKWeightedSum += delta_k*w_hk;
         }
-        double delta = sum * transferFunction.differentiate(getSum());
+        double delta = deltaKWeightedSum * transferFunction.differentiate(getSum());
         lastDelta = delta;
         return delta;
     }
