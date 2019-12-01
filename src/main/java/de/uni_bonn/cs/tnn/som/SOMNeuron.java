@@ -4,6 +4,10 @@ public class SOMNeuron {
 
     double[] centralVector;
 
+    public SOMNeuron(double[] center){
+        centralVector = center;
+    }
+
     public double dist(double[] stimulus) {
         assert (centralVector.length == stimulus.length);
         double sum = 0;
@@ -39,7 +43,7 @@ public class SOMNeuron {
     }
 
     private double neighbourhoodFunction(int index) {
-        return 1 / (double) index;
+        return 1 / (double)(index+1);
     }
 
 }

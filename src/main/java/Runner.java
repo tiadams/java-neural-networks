@@ -4,14 +4,14 @@ import de.uni_bonn.cs.tnn.gui.ErrorPlotter;
 import de.uni_bonn.cs.tnn.io.Pattern;
 import de.uni_bonn.cs.tnn.io.PatternLoader;
 import de.uni_bonn.cs.tnn.rbf.RBFNetwork;
+import de.uni_bonn.cs.tnn.som.MultiNeuralGas;
+import de.uni_bonn.cs.tnn.util.IdentityFunction;
 import de.uni_bonn.cs.tnn.util.PatternGenerator;
 import de.uni_bonn.cs.tnn.util.QuadraticFunction;
 import de.uni_bonn.cs.tnn.util.SinusFunction;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Runner {
 
@@ -27,9 +27,15 @@ public class Runner {
                 case "MLP":
                     System.out.println("Running MLP demo");
                     runMLP();
+                    break;
+                case "MGAS":
+                    System.out.println("Running M-GAS demo");
+                    runMGAS();
+                    break;
                 case "RBF":
                     System.out.println("Running RBF demo");
                     runRBF();
+                    break;
             }
         }
     }
@@ -63,5 +69,25 @@ public class Runner {
         System.out.println("Testing XOR for "+Arrays.toString(testPoint)+": "+Arrays.toString(testRBF.calculateOutputs(testPoint)));
         double[] testPoint2 = {1.0, 0.0};
         System.out.println("Testing XOR for "+Arrays.toString(testPoint2)+": "+Arrays.toString(testRBF.calculateOutputs(testPoint2)));
+    }
+
+    public static void runMGAS(){
+        int[] shape = {5, 5};
+        MultiNeuralGas mGas = new MultiNeuralGas(shape);
+
+        //e.g. clustering of 2 squares
+        Random r = new Random();
+        for (int i = 0; i < 100; i++) { //100 stimuli
+            double[] stimPos;
+            if(r.nextBoolean()){ //50-50 chance to get into [0,0.4] square
+                stimPos = new double[]{r.nextDouble()*0.4, r.nextDouble()*0.4};
+            }
+            else{ //50-50 chance to get into [0.6,1] square
+                stimPos = new double[]{0.6+r.nextDouble()*0.4, 0.6+r.nextDouble()*0.4};
+            }
+            mGas.applyStimulus(stimPos);
+        }
+        System.out.println("applied 100 stimuli to the "+ Arrays.toString(shape) +" M-GAS");
+        //visualise somehow
     }
 }

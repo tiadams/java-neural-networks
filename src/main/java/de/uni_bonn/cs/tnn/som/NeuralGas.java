@@ -1,14 +1,21 @@
 package de.uni_bonn.cs.tnn.som;
 
-import de.uni_bonn.cs.tnn.core.Neuron;
-
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class NeuralGas {
 
-    List<SOMNeuron> neurons;
+    List<SOMNeuron> neurons = new ArrayList<>();
+
+    public NeuralGas(int neuronCount){
+        Random r = new Random();
+        for (int i = 0; i < neuronCount; i++) {
+            neurons.add(new SOMNeuron(new double[]{r.nextDouble(), r.nextDouble()})); //random center init in 0-1 square
+        }
+    }
 
     public void applyStimulus(double[] stimulus) {
         sortForWinner(stimulus);
