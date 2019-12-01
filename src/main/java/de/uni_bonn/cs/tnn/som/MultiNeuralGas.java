@@ -10,6 +10,9 @@ public class MultiNeuralGas {
     List<NeuralGas> gases = new ArrayList<>();
     int t = 0; //time passed
 
+    public List<NeuralGas> getGases() {
+        return gases;
+    }
     public MultiNeuralGas(int[] nodeCounts, int dimension){
         for (int i = 0; i < nodeCounts.length; i++) {
             gases.add(new NeuralGas(nodeCounts[i], dimension));

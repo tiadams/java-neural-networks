@@ -1,3 +1,5 @@
+import de.uni_bonn.cs.tnn.gui.DataPlotter;
+import de.uni_bonn.cs.tnn.io.Stimulus;
 import de.uni_bonn.cs.tnn.mlp.MLPNetwork;
 import de.uni_bonn.cs.tnn.core.TransferFuncType;
 import de.uni_bonn.cs.tnn.gui.ErrorPlotter;
@@ -28,9 +30,9 @@ public class Runner {
                     System.out.println("Running MLP demo");
                     runMLP();
                     break;
-                case "MGAS":
+                case "SOM":
                     System.out.println("Running M-GAS demo");
-                    runMGAS();
+                    runSOM();
                     break;
                 case "RBF":
                     System.out.println("Running RBF demo");
@@ -43,16 +45,19 @@ public class Runner {
     public static void runMLP(){
         // define shape
         int[] shape = {1, 10, 10, 1};
-        TransferFuncType[] functions = {TransferFuncType.IDENTITY, TransferFuncType.TANH, TransferFuncType.TANH, TransferFuncType.IDENTITY};
+        TransferFuncType[] functions = {TransferFuncType.IDENTITY, TransferFuncType.TANH, TransferFuncType.TANH, TransferFuncType.TANH};
         MLPNetwork testMLP = new MLPNetwork(shape, functions);
 
         // load Patterns
         PatternLoader loader = new PatternLoader();
 
         // shuffle
-        List<Pattern> patterns = PatternGenerator.sample(new QuadraticFunction(),10000, -100, 100);
-        List<Pattern> shuffled = loader.getShuffledPatternList(patterns);
+        List<Pattern> patterns = loader.loadPatterns(new File("src/main/resources/training2.dat"));
+        patterns = patterns.subList(0,150);
+        patterns.addAll(patterns);
+        patterns.addAll(patterns);
 
+        List<Pattern> shuffled = loader.getShuffledPatternList(patterns);
         // train
         testMLP.train(shuffled);
 
@@ -71,11 +76,15 @@ public class Runner {
         System.out.println("Testing XOR for "+Arrays.toString(testPoint2)+": "+Arrays.toString(testRBF.calculateOutputs(testPoint2)));
     }
 
-    public static void runMGAS(){
-        int[] shape = {5, 5}; //2 gases of 5 neurons
+    public static void runSOM(){
+        // initialize 2 gases of 5 neurons
+        int[] shape = {5, 5};
         MultiNeuralGas mGas = new MultiNeuralGas(shape, 2);
 
-        //e.g. clustering of 2 squares
+        // save data for visualization
+        List<Stimulus> data = new ArrayList<>();
+
+        // e.g. clustering of 2 squares
         Random r = new Random();
         for (int i = 0; i < 100; i++) { //100 stimuli
             double[] stimPos;
@@ -85,9 +94,15 @@ public class Runner {
             else{ //50-50 chance to get into the unit square's top right quarter
                 stimPos = new double[]{-r.nextDouble(), -r.nextDouble()};
             }
+            data.add(new Stimulus(stimPos));
             mGas.applyStimulus(stimPos);
         }
         System.out.println("applied 100 stimuli to the "+ Arrays.toString(shape) +" M-GAS");
-        //visualise somehow
+
+        //visualise
+        DataPlotter plotter = new DataPlotter();
+        plotter.addData(data, "Data Points");
+        plotter.addData(mGas, "Neurons");
+        plotter.plot();
     }
 }

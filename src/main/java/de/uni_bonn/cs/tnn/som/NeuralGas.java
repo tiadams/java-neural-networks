@@ -9,6 +9,10 @@ public class NeuralGas {
 
     List<SOMNeuron> neurons = new ArrayList<>();
 
+    public List<SOMNeuron> getNeurons() {
+        return neurons;
+    }
+
     public NeuralGas(int neuronCount, int dimension){
         for (int i = 0; i < neuronCount; i++) {
             neurons.add(new SOMNeuron(dimension));
