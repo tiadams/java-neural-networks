@@ -2,7 +2,14 @@ package de.uni_bonn.cs.tnn.core;
 
 public class GaussianTransferFunction implements TransferFunction {
 
-    private double size = 0.2;
+    private double size;
+
+    public GaussianTransferFunction(){
+        this.size = 0.2; //default size
+    }
+    public GaussianTransferFunction(double size){
+        this.size = size;
+    }
 
     @Override
     public double calculate(double input) {

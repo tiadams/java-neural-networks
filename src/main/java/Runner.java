@@ -72,18 +72,18 @@ public class Runner {
     }
 
     public static void runMGAS(){
-        int[] shape = {5, 5};
-        MultiNeuralGas mGas = new MultiNeuralGas(shape);
+        int[] shape = {5, 5}; //2 gases of 5 neurons
+        MultiNeuralGas mGas = new MultiNeuralGas(shape, 2);
 
         //e.g. clustering of 2 squares
         Random r = new Random();
         for (int i = 0; i < 100; i++) { //100 stimuli
             double[] stimPos;
-            if(r.nextBoolean()){ //50-50 chance to get into [0,0.4] square
-                stimPos = new double[]{r.nextDouble()*0.4, r.nextDouble()*0.4};
+            if(r.nextBoolean()){ //50-50 chance to get into the unit square's bottom left quarter
+                stimPos = new double[]{r.nextDouble(), r.nextDouble()};
             }
-            else{ //50-50 chance to get into [0.6,1] square
-                stimPos = new double[]{0.6+r.nextDouble()*0.4, 0.6+r.nextDouble()*0.4};
+            else{ //50-50 chance to get into the unit square's top right quarter
+                stimPos = new double[]{-r.nextDouble(), -r.nextDouble()};
             }
             mGas.applyStimulus(stimPos);
         }
