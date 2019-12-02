@@ -38,7 +38,7 @@ public class DataPlotter {
     public void plot() {
         chart.getStyler().setDefaultSeriesRenderStyle(XYSeries.XYSeriesRenderStyle.Scatter);
         chart.getStyler().setChartTitleVisible(false);
-        chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideSW);
+        chart.getStyler().setLegendPosition(Styler.LegendPosition.OutsideS);
         chart.getStyler().setMarkerSize(16);
         new SwingWrapper(chart).displayChart();
     }
