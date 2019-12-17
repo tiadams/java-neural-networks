@@ -99,7 +99,7 @@ public class Runner {
         }
         System.out.println("applied 100 stimuli to the "+ Arrays.toString(shape) +" M-GAS");
 
-        //visualise
+        //visualize
         DataPlotter plotter = new DataPlotter();
         plotter.addData(data, "Data Points");
         plotter.addData(mGas, "Neurons");
