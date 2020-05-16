@@ -38,7 +38,5 @@ RBFNetwork testRBF = new RBFNetwork(shape2, centers);
 double[] testPoint = {0.0, 0.0};
 System.out.println("Testing XOR for "+Arrays.toString(testPoint)+": "+Arrays.toString(testRBF.calculateOutputs(testPoint)));
 double[] testPoint2 = {1.0, 0.0};
-System.out.println("Testing XOR for "+Arrays.toString(testPoint2)+":"+Arrays.toString(testRBF.calculateOutputs(testPoint2)));
-
-        
+System.out.println("Testing XOR for "+Arrays.toString(testPoint2)+":"+Arrays.toString(testRBF.calculateOutputs(testPoint2))); 
 
